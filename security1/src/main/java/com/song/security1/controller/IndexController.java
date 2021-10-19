@@ -4,6 +4,8 @@ import ch.qos.logback.core.joran.spi.ConsoleTarget;
 import com.song.security1.model.User;
 import com.song.security1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,5 +63,16 @@ public class IndexController {
 
         userRepository.save(user); //회원가입 잘됨. 비밀번호 1234 => 시큐리티로 로그인 할 수 없음 => 해쉬화되지 않았기 때문에..
         return "redirect:/loginForm";
+    }
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/info")
+    public @ResponseBody String info(){
+        return "개인정보";
+    }
+
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')") // 여러개를 걸고 싶다면
+    @GetMapping("/data")
+    public @ResponseBody String data(){
+        return "데이터 정보";
     }
 }
