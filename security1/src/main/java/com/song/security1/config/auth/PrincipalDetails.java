@@ -1,4 +1,4 @@
-package com.song.security1.auth;
+package com.song.security1.config.auth;
 
 // 시큐리티가 /login을 낚아채서 로그인을 진행 시킨다.
 // 로그인을 진행 완료가 되면 시큐리티 session을 만들어 줍니다.(security ContextHolder)

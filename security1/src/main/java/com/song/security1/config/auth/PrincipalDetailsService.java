@@ -1,4 +1,4 @@
-package com.song.security1.auth;
+package com.song.security1.config.auth;
 
 
 import com.song.security1.model.User;
