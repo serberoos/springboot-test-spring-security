@@ -9,19 +9,29 @@ package com.song.security1.config.auth;
 //Security Session=>Authentication=> UserDetails(PrincipalDetails)  | 정해져 있음.
 
 import com.song.security1.model.User;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
-public class PrincipalDetails implements UserDetails {
+@Data
+public class PrincipalDetails implements UserDetails, OAuth2User {
 
     private User user; // 콤포지션
 
     public PrincipalDetails(User user){
         this.user=user;
     }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return null;
+    }
+
     // 해당 유저의 권한을 리턴하는 곳
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -66,5 +76,10 @@ public class PrincipalDetails implements UserDetails {
         //우리 사이트!! 1년동안 회원이 로그인을 안하면 휴면 계정으로 하게됨
         // 현재 시간 - 로긴시간 = 1년 초과 시 false
         return true;
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 }
