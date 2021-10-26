@@ -57,8 +57,12 @@ public class IndexController {
         //뷰 리졸버 설정 : templates (prefix), .mustache (suffix)
         return "index"; // src/main/resources/templates/index.mustache
     }
+
+    // Oauth 로그인을 해도 PrincipalDetails
+    // 일반 로그인을 해도 PrincipalDetails 로 받을 수 있다.
     @GetMapping("/user")
     public @ResponseBody String user(@AuthenticationPrincipal PrincipalDetails principalDetails){
+        System.out.println("principalDetails : " + principalDetails.getUser());
         return "user";
     }
     @GetMapping("/admin")
