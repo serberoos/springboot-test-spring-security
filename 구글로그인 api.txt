@@ -1,0 +1,2 @@
+클라이언트 ID = 595771814346-intpn8g2sv1dcd9akhu8scu980nlro6v.apps.googleusercontent.com
+클라이언트 보안 비번 = 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
